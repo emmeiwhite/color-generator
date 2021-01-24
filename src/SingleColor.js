@@ -3,16 +3,25 @@ import rgbToHex from "./utils";
 
 const SingleColor = ({ rgb, index, weight, hexColor }) => {
   const [alert, setAlert] = useState(false);
-  const hexColorMain = `3${hexColor}`;
+  const hexColorMain = `#${hexColor}`;
   const bgc = rgb.join(",");
   const hex = rgbToHex(...rgb); // spreading my array values while passing values to the function
+
+  const handleClick = (e) => {
+    setAlert(true);
+    navigator.clipboard.writeText(hexColorMain);
+  };
+
+  //
   return (
     <article
       className={`${index > 10 ? "color-light" : null} color`}
       style={{ backgroundColor: `rgb(${bgc})` }}
+      onClick={handleClick}
     >
       <p className="percent-value">{weight}%</p>
       <p className="color-value">{hexColorMain}</p>
+      {alert && <p className="alert">Copied to Clipboard</p>}
     </article>
   );
 };
