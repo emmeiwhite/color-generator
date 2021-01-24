@@ -12,7 +12,13 @@ const SingleColor = ({ rgb, index, weight, hexColor }) => {
     navigator.clipboard.writeText(hexColorMain);
   };
 
-  //
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, [alert]);
   return (
     <article
       className={`${index > 10 ? "color-light" : null} color`}
