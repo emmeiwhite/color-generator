@@ -7,7 +7,7 @@ import ColorInputForm from "./components/ColorInputForm";
 function App() {
   const [color, setColor] = useState("");
   const [error, setError] = useState(false);
-  const [colorShades, setColorShades] = useState([]);
+  const [colorShades, setColorShades] = useState(new Values("#f15025").all(10));
 
   const handleChange = (e) => {
     setColor(e.target.value);
